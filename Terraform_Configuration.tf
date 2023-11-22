@@ -39,18 +39,16 @@ resource "null_resource" "Installation_via_Ansible" {
   count = length(aws_instance.ERCLI_CP1_Ubuntu)
 
   provisioner "local-exec" {
-      command = "sleep 50"
-    }
-
-  connection {
-    type        = "ssh"
-    user        = "root"
-    private_key = file("/home/elmerlakanilawy/CapstoneProject/ERCLI-CEP1/ERCLI_CEP1_Key.pem")
-    host        = aws_instance.ERCLI_CP1_Ubuntu[count.index].public_ip
-  }
-
-  provisioner "local-exec" {
-    command = "sleep 10 && ansible-playbook -i '${aws_instance.ERCLI_CP1_Ubuntu.*.public_ip[count.index]},' Ansible_Playbook.yaml --private-key=/home/elmerlakanilawy/CapstoneProject/ERCLI-CEP1/ERCLI_CEP1_Key.pem"
+    command = <<-EOT
+      max_retries=5
+      retries=0
+      while [ $retries -lt $max_retries ]; do
+        ssh -i /home/elmerlakanilawy/CapstoneProject/ERCLI-CEP1/ERCLI_CEP1_Key.pem -o ConnectTimeout=10 root@${aws_instance.ERCLI_CP1_Ubuntu[count.index].public_ip} exit && break
+        ((retries++))
+        sleep 10
+      done
+      ansible-playbook -i '${aws_instance.ERCLI_CP1_Ubuntu.*.public_ip[count.index]},' Ansible_Playbook.yaml --private-key=/home/elmerlakanilawy/CapstoneProject/ERCLI-CEP1/ERCLI_CEP1_Key.pem
+    EOT
     environment = {
       ANSIBLE_HOST_KEY_CHECKING = "False"
     }
