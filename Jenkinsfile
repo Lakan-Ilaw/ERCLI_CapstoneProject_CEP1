@@ -16,9 +16,10 @@ pipeline {
       }
     }
     stage('Clone Repository') {
-      checkout scm  
+      steps {
+        checkout scm  
+      }
     }
-
     stage('Maven Build'){
       steps {
         sh "${mavenHome} clean package"
