@@ -74,7 +74,8 @@ pipeline {
     stage('Terraform Initialization & Planning') {
       steps {
         echo 'Fetching files from repository'
-        sh "cp -r ${env.WORKSPACE}/*.{tf,yaml} $workingDir"
+        sh "cp -r ${env.WORKSPACE}/*.yaml $workingDir"
+        sh "cp -r ${env.WORKSPACE}/*.tf $workingDir"
         echo sh(script: 'ls -lrt', returnStdout: true).trim()
         echo 'Initializing Terraform'
         sh "terraform -chdir=$workingDir init"
