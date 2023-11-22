@@ -12,7 +12,7 @@ pipeline {
     stage('Prepare Environment'){
       steps {
         echo 'Initialize Environment'
-        echo "Tag: $tag | Docker Hub User: $dockerHubUser | Container Name: $containerName | Port: $httpPort
+        echo "Tag: $tag | Docker Hub User: $dockerHubUser | Container Name: $containerName | Port: $httpPort"
       }
     }
     stage('Clone Repository') {
