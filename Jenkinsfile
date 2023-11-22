@@ -74,11 +74,11 @@ pipeline {
       steps {
         echo 'Fetching files from repository'
         sh "cp -r ${env.WORKSPACE}/*.{tf,yaml} $workingDir"
-		echo sh(script: 'ls -lrt', returnStdout: true).trim()
+        echo sh(script: 'ls -lrt', returnStdout: true).trim()
         echo 'Initializing Terraform'
         sh "terraform -chdir=$workingDir init"
-		echo 'Terraform Planning'
-		sh "terraform -chdir=$workingDir plan"
+        echo 'Terraform Planning'
+        sh "terraform -chdir=$workingDir plan"
         echo 'Terraform Initialization complete'
         }
     }
