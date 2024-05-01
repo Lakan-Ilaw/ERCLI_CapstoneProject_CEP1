@@ -1,8 +1,8 @@
+**PROBLEM STATEMENT:**
+
+![image](https://github.com/Lakan-Ilaw/ERCLI_CapstoneProject_CEP1/assets/134827117/5bb4f4cf-6c2e-49f2-a299-d1318a53a7f0)
 
 
-This project will help you to understand various concept related to Insurace domain. Please read the Insurace-domain.pdf to get more functional knowledge on 
-Insurace domain. 
+**Solution and Documentation:**
+[[Lakan-Ilaw]ASI Insurance.pdf](https://github.com/Lakan-Ilaw/ERCLI_CapstoneProject_CEP1/files/15172650/Lakan-Ilaw.ASI.Insurance.pdf)
 
-This project front is based on simple HTML, CSS and Angular Js ad Backend is Java Spring Boot.
-
-In order to run the application use port 8081..
